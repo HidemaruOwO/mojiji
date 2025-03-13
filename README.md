@@ -5,7 +5,7 @@
 
 A cute way to turn text into an image that looks like an emoji 🎨
 
-> [!INFO]
+> [!NOTE]
 > This repository is development now!!
 
 ## 🚀 Features
