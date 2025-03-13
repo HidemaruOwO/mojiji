@@ -1,59 +1,89 @@
-# MicroRepository 📚
+<!-- YOU SHOULD RUN THIS COMMAND IF YOU USING VIM -->
+<!-- :%s;HidemaruOwO/mojiji;USERNAME/REPONAME;g -->
 
-A template that gathers the minimal structure of my repository.
+# mojiji 🎨
+
+A cute way to turn text into an image that looks like an emoji 🎨
+
+> [!INFO]
+> This repository is development now!!
 
 ## 🚀 Features
 
-- Modern README
-- Multiple licenses: `Apache 2.0` and `SUSHI-WARE`
+- SIMPLE REST API
+- TEXT TO IMAGE WITH GOOD-LOOKS FONTS
 
 <!-- ## 🛠 Installation -->
 
 <!-- ```bash -->
-<!-- brew install micro-repository -->
+<!-- brew install my-repository -->
 <!-- ``` -->
 
-<!-- ### 🏗 Build from Source -->
+<!-- | distribution         | command                         | -->
+<!-- | -------------------- | ------------------------------- | -->
+<!-- | Ubuntu               | `apt-get install <package>`     | -->
+<!-- | Debian               | `apt install <package>`         | -->
+<!-- | Arch Linux           | `pacman -S <package>`           | -->
+<!-- | Fedora               | `dnf install <package>`         | -->
+<!-- | CentOS               | `yum install <package>`         | -->
+<!-- | openSUSE             | `zypper install <package>`      | -->
+<!-- | Alpine Linux         | `apk add <package>`             | -->
+<!-- | Gentoo               | `emerge <package>`              | -->
+<!-- | NixOS                | `nix-env -iA nixpkgs.<package>` | -->
+<!-- | macOS                | `brew install <package>`        | -->
+<!-- | Windows (winget)     | `winget install <package>`      | -->
+<!-- | Windows (Chocolatey) | `choco install <package>`       | -->
 
-<!-- ```sh -->
-<!-- git clone https://github.com/HidemaruOwO/MicroRepository.git -->
-<!-- cd MicroRepository -->
+### 🏗 Install from Source
 
-<!-- make -j8 -->
+```sh
+git clone https://github.com/HidemaruOwO/mojiji.git
+cd mojiji
 
-<!-- install -Dm0755 -t "/usr/local/bin/" "dist/builded-binary" -->
-<!-- ``` -->
+cargo build --release
 
-<!-- - Arch Linux -->
-
-<!-- ```sh -->
-<!-- git clone https://github.com/HidemaruOwO/MicroRepository.git -->
-<!-- cd MicroRepository -->
-
-<!-- makepkg -si -->
-<!-- ``` -->
+install -Dm0755 -t "/usr/local/bin/" "target/release/mojiji"
+```
 
 ## 🎯 Usage
 
-A guide to using this repository template:
-
-1. Click `Use this template` > `Create a new repository` in the top right corner.
-2. Clone the created repository, rename README.example.md to README.md, edit it with your preferred editor, and migrate.
-
 ```bash
-mv README.example.md README.md
-
-# For Linux users
-sed -i 's;HidemaruOwO/MyRepository;USERNAME/REPONAME;g' README.md
-
-# For macOS users
-sed -i '' 's;HidemaruOwO/MyRepository;USERNAME/REPONAME;g' README.md
+# running local host 3000
+mojiji
 ```
 
-3. Edit credits in LICENSE and licenses/SUSHI-WARE.txt.
+- To run the service automatically, you can set it up with `systemd`:
 
-> [!IMPORTANT]
-> If you don't change the credit in the license file, I will usually own the rights to your software. (LoL)
+```sh
+# run as a service.
+sudo systemctl enable --now mojiji.service
+
+# if u alerdy using interception.
+sudo systemctl restart mojiji.service
+```
+
+<details>
+<summary>mojiji.service file</summary>
+
+```service
+[Unit]
+Description=Mojiji Web API
+After=network.target
+
+[Service]
+#User=user
+#WorkingDirectory=/home/user/app
+ExecStart=/usr/local/bin/mojiji
+Restart=always
+StandardOutput=journal
+StandardError=journal
+Environment=PATH=/usr/bin:/usr/local/bin
+
+[Install]
+WantedBy=multi-user.target
+```
+
+</details>
 
 ## 🌍 For contributer
 
@@ -77,7 +107,7 @@ By submitting a pull request, you agree to these terms.
 </a>
 </div>
 
-This project is dual-licensed under [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0) and [SUSHI-WARE LICENSE](https://github.com/MakeNowJust/sushi-ware).
+This project is dual-licensed under [Apache License 2.0](licenses/APACHE-2.0.txt) and [SUSHI-WARE LICENSE](licenses/SUSHI-WARE.txt).
 
 A reference to the latest license should be used, even if the attached license is outdated of major versions.
 
