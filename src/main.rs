@@ -16,7 +16,11 @@ fn index() -> &'static str {
 
 #[get("/generate")]
 fn generate() -> Result<Image, &'static str> {
-    let image = match process("おはようございます", "Noto") {
+    // TODO
+    // サイズとフォントと文字は全てパラメータから持って来れるようにする
+    // /generate?text=おはよう&font=Noto&size=100
+    // パラメータのsizeはf32
+    let image = match process("おはようございます", "Noto", 100.0) {
         Ok(v) => v,
         Err(e) => return Err(e),
     };

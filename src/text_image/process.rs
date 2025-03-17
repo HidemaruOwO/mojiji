@@ -31,8 +31,8 @@ fn canvas_size(text: &str, text_scale: Scale, font: &Font) -> (u32, u32) {
     (max_width.ceil() as u32, total_height.ceil() as u32)
 }
 
-pub fn process(text: &str, font: &str) -> Result<DynamicImage, &'static str> {
-    let text_size = 250.0;
+pub fn process(text: &str, font: &str, size: f32) -> Result<DynamicImage, &'static str> {
+    let text_size = size;
     let text_scale = Scale {
         x: text_size,
         y: text_size,
