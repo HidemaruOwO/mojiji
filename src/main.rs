@@ -1,4 +1,3 @@
-use rocket::{http::ContentType, response::content};
 use text_image::{image::dynamic_image_to_vec, process::process};
 
 mod text_image;
