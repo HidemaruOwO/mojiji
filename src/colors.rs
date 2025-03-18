@@ -109,7 +109,7 @@ pub fn with_alpha(color: &Rgba<u8>, alpha: u8) -> Rgba<u8> {
 }
 
 pub fn rgba_to_rgb(rgba: &Rgba<u8>) -> Rgb<u8> {
-    let [r, g, b, _] = rgba.0; // アルファチャンネルは無視
+    let [r, g, b, _] = rgba.0;
     Rgb([r, g, b])
 }
 
@@ -124,10 +124,8 @@ pub fn rgba_to_luma(rgba: &Rgba<u8>) -> Luma<u8> {
 }
 
 pub fn hex_to_rgba(hex: &str) -> Result<Rgba<u8>, String> {
-    // '#'で始まる場合は取り除く
     let hex = hex.trim_start_matches('#');
 
-    // 長さをチェック
     let len = hex.len();
     if len != 6 && len != 8 {
         return Err(format!(
@@ -136,7 +134,6 @@ pub fn hex_to_rgba(hex: &str) -> Result<Rgba<u8>, String> {
         ));
     }
 
-    // 16進数文字列を数値に変換
     let r = u8::from_str_radix(&hex[0..2], 16)
         .map_err(|_| format!("Invalid red component: {}", &hex[0..2]))?;
     let g = u8::from_str_radix(&hex[2..4], 16)
@@ -144,12 +141,12 @@ pub fn hex_to_rgba(hex: &str) -> Result<Rgba<u8>, String> {
     let b = u8::from_str_radix(&hex[4..6], 16)
         .map_err(|_| format!("Invalid blue component: {}", &hex[4..6]))?;
 
-    // アルファ値（存在する場合）
+    // アルファ値
     let a = if len == 8 {
         u8::from_str_radix(&hex[6..8], 16)
             .map_err(|_| format!("Invalid alpha component: {}", &hex[6..8]))?
     } else {
-        255 // デフォルトは完全不透明
+        255
     };
 
     Ok(Rgba([r, g, b, a]))
