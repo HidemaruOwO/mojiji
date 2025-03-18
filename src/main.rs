@@ -27,6 +27,7 @@ async fn generate(
     size: Option<f32>,
     config: &State<AppConfig>,
 ) -> Result<Image, &'static str> {
+    let text = &text.replace("\\n", "\n");
     let font = font.unwrap_or(config.default_font);
     let size = size.unwrap_or(config.default_size);
 

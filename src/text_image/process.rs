@@ -54,16 +54,19 @@ pub fn process(text: &str, font: &str, size: f32) -> Result<DynamicImage, &'stat
         Rgba([0, 0, 0, 0])
     }));
 
-    // テキストとフォントをレンダリング
-    draw_text_mut(
-        &mut image,
-        Rgba([255, 255, 255, 255]),
-        0,
-        0,
-        text_scale,
-        &font_raw,
-        text,
-    );
+    // 複数行対応
+    for (i, line) in text.lines().enumerate() {
+        // テキストとフォントをレンダリング
+        draw_text_mut(
+            &mut image,
+            Rgba([255, 255, 255, 255]),
+            0,
+            (text_size * (i as f32)) as u32,
+            text_scale,
+            &font_raw,
+            line,
+        );
+    }
 
     Ok(image)
 }
