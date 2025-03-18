@@ -2,6 +2,8 @@ use image::{DynamicImage, ImageBuffer, Rgba};
 use imageproc::drawing::draw_text_mut;
 use rusttype::{point, Font, Scale};
 
+use crate::colors::{self, rgba_to_rgb};
+
 fn canvas_size(text: &str, text_scale: Scale, font: &Font) -> (u32, u32) {
     // テキストの実際のレンダリングサイズを計算
     let v_metrics = font.v_metrics(text_scale);
@@ -54,12 +56,15 @@ pub fn process(text: &str, font: &str, size: f32) -> Result<DynamicImage, &'stat
         Rgba([0, 0, 0, 0])
     }));
 
+    let color = colors::random();
+    println!("{:?}", color);
+
     // 複数行対応
     for (i, line) in text.lines().enumerate() {
         // テキストとフォントをレンダリング
         draw_text_mut(
             &mut image,
-            Rgba([255, 255, 255, 255]),
+            color,
             0,
             (text_size * (i as f32)) as u32,
             text_scale,
