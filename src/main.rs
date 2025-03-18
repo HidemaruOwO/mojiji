@@ -29,7 +29,12 @@ async fn generate(
 ) -> Result<Image, &'static str> {
     let text = &text.replace("\\n", "\n");
     let font = font.unwrap_or(config.default_font);
-    let size = size.unwrap_or(config.default_size);
+    let mut size = size.unwrap_or(config.default_size);
+
+    // サイズが大きすぎたら処理が固まるので 500サイズまで
+    if size > 500.0 {
+        size = 100.0;
+    }
 
     let image = match process(text, font, size) {
         Ok(v) => v,
