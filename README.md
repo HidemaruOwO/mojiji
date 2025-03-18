@@ -131,3 +131,4 @@ A reference to the latest license should be used, even if the attached license i
 This repository was created using the [MicroRepository](https://github.com/HidemaruOwO/MicroRepository) template.
 
 - [HidemaruOwO/MicroRepository](https://github.com/HidemaruOwO/MicroRepository)
+- [@emoji ボットの使い方 (ja)](https://nzws.notion.site/emoji-ja-23238c8c0946453c8acdadc78fc9acb9)
