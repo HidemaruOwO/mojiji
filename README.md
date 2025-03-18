@@ -10,8 +10,23 @@ A cute way to turn text into an image that looks like an emoji 🎨
 
 ## 🚀 Features
 
-- SIMPLE REST API
-- TEXT TO IMAGE WITH GOOD-LOOKS FONTS
+- Simple REST API
+- Text to image with good-looks fonts
+
+## 📚 API Reference
+
+- **GET**: `/generate`
+
+```bash
+curl https://mojiji.v-sli.me?text=HelloMojiji&font=Noto&size=100&color=444444
+```
+
+**parameters**
+
+- `text`: Specifies the text to be displayed in the generated image.
+- `font` (optional): Specifies the font to be used. (default: `Rounded Mplus`)
+- `size` (optional): Specifies the font size in pixels. (default: `100`, range: `1~500`)
+- `color` (optional): Specifies the text color in **hexadecimal format without #** (e.g., 444444 for dark gray). **If `#` is included, a random color will be used instead.** (default: `random`)
 
 <!-- ## 🛠 Installation -->
 
