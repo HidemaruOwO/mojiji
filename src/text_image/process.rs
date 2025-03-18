@@ -70,11 +70,23 @@ pub fn process(
     let mut image_buffer = ImageBuffer::new(width, height);
 
     for (i, line) in text.lines().enumerate() {
+        // センタリングのため
+        let line_width = {
+            let glyphs: Vec<_> = font_raw.layout(line, text_scale, point(0.0, 0.0)).collect();
+            glyphs
+                .last()
+                .and_then(|g| g.pixel_bounding_box().map(|bb| bb.max.x as f32))
+                .unwrap_or(0.0)
+                .ceil() as u32
+        };
+
+        let x_position = (width - line_width) / 2;
+
         draw_text_mut(
             &mut image_buffer,
             color,
-            0,
-            ((size * (i as f32)) as u32).try_into().unwrap(),
+            x_position.try_into().unwrap(), // センタリング。ここが 0 だとセンタリングをしない
+            ((size * (i as f32)) as u32).try_into().unwrap(), // 行で分けるように
             PxScale::from(size),
             &font_source,
             line,
