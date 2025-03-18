@@ -43,7 +43,7 @@ pub fn process(text: &str, font: &str, size: f32) -> Result<DynamicImage, &'stat
         "Noto" => include_bytes!("../../fonts/NotoSansJP-Bold.ttf"),
         _ => return Err("Unsupported font."),
     };
-    let font_raw = match Font::try_from_vec(Vec::from(font_data as &[u8])) {
+    let font_raw = match Font::try_from_bytes(font_data) {
         Some(v) => v,
         None => return Err("Failed to load fonts."),
     };
