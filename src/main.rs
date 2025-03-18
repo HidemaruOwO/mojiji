@@ -1,9 +1,15 @@
+use rocket::State;
 use text_image::{image::dynamic_image_to_vec, process::process};
 
 mod text_image;
 
 #[macro_use]
 extern crate rocket;
+
+struct AppConfig {
+    default_font: &'static str,
+    default_size: f32,
+}
 
 #[derive(Responder)]
 #[response(content_type = "image/png")]
@@ -14,13 +20,17 @@ fn index() -> &'static str {
     "mojiji is running now."
 }
 
-#[get("/generate")]
-fn generate() -> Result<Image, &'static str> {
-    // TODO
-    // サイズとフォントと文字は全てパラメータから持って来れるようにする
-    // /generate?text=おはよう&font=Noto&size=100
-    // パラメータのsizeはf32
-    let image = match process("おはようございます", "Noto", 100.0) {
+#[get("/generate?<text>&<font>&<size>")]
+async fn generate(
+    text: &str,
+    font: Option<&str>,
+    size: Option<f32>,
+    config: &State<AppConfig>,
+) -> Result<Image, &'static str> {
+    let font = font.unwrap_or(config.default_font);
+    let size = size.unwrap_or(config.default_size);
+
+    let image = match process(text, font, size) {
         Ok(v) => v,
         Err(e) => return Err(e),
     };
@@ -33,5 +43,10 @@ fn generate() -> Result<Image, &'static str> {
 
 #[launch]
 fn rocket() -> _ {
-    rocket::build().mount("/", routes![index, generate])
+    rocket::build()
+        .manage(AppConfig {
+            default_font: "Noto",
+            default_size: 100.0,
+        })
+        .mount("/", routes![index, generate])
 }
