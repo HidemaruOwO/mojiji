@@ -1,8 +1,9 @@
+use ab_glyph::{FontVec, PxScale};
 use image::{DynamicImage, ImageBuffer, Rgba};
 use imageproc::drawing::draw_text_mut;
 use rusttype::{point, Font, Scale};
 
-use crate::colors::{self, rgba_to_rgb};
+use crate::colors;
 
 fn canvas_size(text: &str, text_scale: Scale, font: &Font) -> (u32, u32) {
     // テキストの実際のレンダリングサイズを計算
@@ -34,11 +35,7 @@ fn canvas_size(text: &str, text_scale: Scale, font: &Font) -> (u32, u32) {
 }
 
 pub fn process(text: &str, font: &str, size: f32) -> Result<DynamicImage, &'static str> {
-    let text_size = size;
-    let text_scale = Scale {
-        x: text_size,
-        y: text_size,
-    };
+    let text_scale = Scale { x: size, y: size };
 
     // フォントを読み込む
     let font_data = match font {
@@ -49,29 +46,28 @@ pub fn process(text: &str, font: &str, size: f32) -> Result<DynamicImage, &'stat
         Some(v) => v,
         None => return Err("Failed to load fonts."),
     };
+    let font_source = match FontVec::try_from_vec(Vec::from(font_data as &[u8])) {
+        Ok(v) => v,
+        Err(e) => return Err("Failed to load fonts."),
+    };
 
     // 元の画像を定義
     let (width, height) = canvas_size(text, text_scale, &font_raw);
-    let mut image = DynamicImage::ImageRgba8(ImageBuffer::from_fn(width, height, |_x, _y| {
-        Rgba([0, 0, 0, 0])
-    }));
-
     let color = colors::random();
-    println!("{:?}", color);
 
-    // 複数行対応
+    let mut image_buffer = ImageBuffer::new(width, height);
+
     for (i, line) in text.lines().enumerate() {
-        // テキストとフォントをレンダリング
         draw_text_mut(
-            &mut image,
+            &mut image_buffer,
             color,
             0,
-            (text_size * (i as f32)) as u32,
-            text_scale,
-            &font_raw,
+            ((size * (i as f32)) as u32).try_into().unwrap(),
+            PxScale::from(size),
+            &font_source,
             line,
         );
     }
 
-    Ok(image)
+    Ok(DynamicImage::ImageRgba8(image_buffer))
 }

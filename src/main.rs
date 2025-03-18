@@ -42,7 +42,7 @@ async fn generate(
         Err(e) => return Err(e),
     };
 
-    let png = dynamic_image_to_vec(&image, image::ImageOutputFormat::Png)
+    let png = dynamic_image_to_vec(&image, image::ImageFormat::Png)
         .expect("Failed to generate png image.");
 
     Ok(Image(png))
