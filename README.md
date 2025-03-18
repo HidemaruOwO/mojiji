@@ -28,7 +28,7 @@ curl https://mojiji.v-sli.me?text=HelloMojiji&font=Noto&size=100&color=444444
 - `size` (optional): Specifies the font size in pixels. (default: `100`, range: `1~500`)
 - `color` (optional): Specifies the text color in **hexadecimal format without #** (e.g., 444444 for dark gray). **If `#` is included, a random color will be used instead.** (default: `random`)
 
-<!-- ## 🛠 Installation -->
+## 🛠 Installation
 
 <!-- ```bash -->
 <!-- brew install my-repository -->
