@@ -1,5 +1,5 @@
 use ab_glyph::{FontVec, PxScale};
-use image::{DynamicImage, ImageBuffer, Rgba};
+use image::{DynamicImage, ImageBuffer};
 use imageproc::drawing::draw_text_mut;
 use rusttype::{point, Font, Scale};
 
@@ -48,7 +48,7 @@ pub fn process(text: &str, font: &str, size: f32) -> Result<DynamicImage, &'stat
     };
     let font_source = match FontVec::try_from_vec(Vec::from(font_data as &[u8])) {
         Ok(v) => v,
-        Err(e) => return Err("Failed to load fonts."),
+        Err(_) => return Err("Failed to load fonts."),
     };
 
     // 元の画像を定義
