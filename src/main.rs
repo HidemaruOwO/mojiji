@@ -1,6 +1,7 @@
 use rocket::State;
 use text_image::{image::dynamic_image_to_vec, process::process};
 
+mod colors;
 mod text_image;
 
 #[macro_use]
