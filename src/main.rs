@@ -30,13 +30,16 @@ async fn generate(
     config: &State<AppConfig>,
 ) -> Result<Image, &'static str> {
     let text = &text.replace("\\n", "\n");
-    let color = color.unwrap_or("random");
+    let mut color = color.unwrap_or("random");
+    if color == "" {
+        color = "random";
+    }
 
     let font = font.unwrap_or(config.default_font);
     let mut size = size.unwrap_or(config.default_size);
 
     // サイズが大きすぎたら処理が固まるので 500サイズまで
-    if size > 500.0 {
+    if size > 500.0 || size <= 0.0 {
         size = 100.0;
     }
 
