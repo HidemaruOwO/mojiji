@@ -21,14 +21,17 @@ fn index() -> &'static str {
     "mojiji is running now."
 }
 
-#[get("/generate?<text>&<font>&<size>")]
+#[get("/generate?<text>&<font>&<size>&<color>")]
 async fn generate(
     text: &str,
+    color: Option<&str>,
     font: Option<&str>,
     size: Option<f32>,
     config: &State<AppConfig>,
 ) -> Result<Image, &'static str> {
     let text = &text.replace("\\n", "\n");
+    let color = color.unwrap_or("random");
+
     let font = font.unwrap_or(config.default_font);
     let mut size = size.unwrap_or(config.default_size);
 
@@ -37,7 +40,7 @@ async fn generate(
         size = 100.0;
     }
 
-    let image = match process(text, font, size) {
+    let image = match process(text, font, size, color) {
         Ok(v) => v,
         Err(e) => return Err(e),
     };

@@ -3,7 +3,7 @@ use image::{DynamicImage, ImageBuffer};
 use imageproc::drawing::draw_text_mut;
 use rusttype::{point, Font, Scale};
 
-use crate::colors;
+use crate::colors::{self, hex_to_rgba};
 
 fn canvas_size(text: &str, text_scale: Scale, font: &Font) -> (u32, u32) {
     // テキストの実際のレンダリングサイズを計算
@@ -34,7 +34,12 @@ fn canvas_size(text: &str, text_scale: Scale, font: &Font) -> (u32, u32) {
     (max_width.ceil() as u32, total_height.ceil() as u32)
 }
 
-pub fn process(text: &str, font: &str, size: f32) -> Result<DynamicImage, &'static str> {
+pub fn process(
+    text: &str,
+    font: &str,
+    size: f32,
+    color: &str,
+) -> Result<DynamicImage, &'static str> {
     let text_scale = Scale { x: size, y: size };
 
     // フォントを読み込む
@@ -53,7 +58,14 @@ pub fn process(text: &str, font: &str, size: f32) -> Result<DynamicImage, &'stat
 
     // 元の画像を定義
     let (width, height) = canvas_size(text, text_scale, &font_raw);
-    let color = colors::random();
+    let color = if color == "random" {
+        colors::random()
+    } else {
+        match hex_to_rgba(color) {
+            Ok(v) => v,
+            Err(_) => return Err("Failed to convert hex to rgba."),
+        }
+    };
 
     let mut image_buffer = ImageBuffer::new(width, height);
 
