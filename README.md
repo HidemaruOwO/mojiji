@@ -15,10 +15,10 @@ A cute way to turn text into an image that looks like an emoji 🎨
 
 ## 📚 API Reference
 
-- **GET**: `/generate`
+- **GET**: `/`
 
 ```bash
-curl https://mojiji.v-sli.me?text=HelloMojiji&font=Noto&size=100&color=444444
+curl "https://mojiji.v-sli.me?text=もじじを試してみる&font=mplus&size=100&color=444444"
 ```
 
 **parameters**
@@ -111,6 +111,14 @@ curl https://mojiji.v-sli.me?text=HelloMojiji&font=Noto&size=100&color=444444
 - `size` (optional): Specifies the font size in pixels. (default: `100`, range: `1~500`)
 - `color` (optional): Specifies the text color in **hexadecimal format without #** (e.g., 444444 for dark gray). **If `#` is included, a random color will be used instead.** (default: `random`)
 
+- **GET**: `/alive`
+
+````bash
+curl https://mojiji.v-sli.me/alive
+
+# mojiji is running now.
+```
+
 ## 🛠 Installation
 
 <!-- ```bash -->
@@ -141,7 +149,7 @@ cd mojiji
 cargo build --release
 
 install -Dm0755 -t "/usr/local/bin/" "target/release/mojiji"
-```
+````
 
 ## 🎯 Usage
 
