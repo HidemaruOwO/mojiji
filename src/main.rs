@@ -58,7 +58,7 @@ async fn generate(
 fn rocket() -> _ {
     rocket::build()
         .manage(AppConfig {
-            default_font: "Noto",
+            default_font: "rounded_mplus",
             default_size: 100.0,
         })
         .mount("/", routes![index, generate])

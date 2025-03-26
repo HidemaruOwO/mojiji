@@ -43,8 +43,9 @@ pub fn process(
     let text_scale = Scale { x: size, y: size };
 
     // フォントを読み込む
-    let font_data = match font {
-        "Noto" => include_bytes!("../../fonts/NotoSansJP-Bold.ttf"),
+    let font_data: &[u8] = match font {
+        "noto" => include_bytes!("../../fonts/NotoSansJP-Bold.ttf"),
+        "rounded_mplus" => include_bytes!("../../fonts/rounded-mplus-1m-bold.ttf"),
         _ => return Err("Unsupported font."),
     };
     let font_raw = match Font::try_from_bytes(font_data) {
