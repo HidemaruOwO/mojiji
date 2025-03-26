@@ -24,7 +24,90 @@ curl https://mojiji.v-sli.me?text=HelloMojiji&font=Noto&size=100&color=444444
 **parameters**
 
 - `text`: Specifies the text to be displayed in the generated image.
-- `font` (optional): Specifies the font to be used. (default: `Rounded Mplus`)
+- `font` (optional): Specifies the font to be used. (default: `rounded_mplus`)
+
+<details>
+<summary>Available Fonts</summary>
+
+- **Noto Sans JP**
+
+  - `Prefix`: `noto` `noto_sans`
+  - `Support`: 日本語（ひらがな、カタカナ、漢字）、英数字
+  - `Style`: ゴシック体、太字
+
+- **Rounded M+ 1m**
+
+  - `Prefix`: `mplus` `rounded_mplus`
+  - `Support`: 日本語、英数字
+  - `Style`: 丸ゴシック体、太字
+
+- **Memoir**
+
+  - `Prefix`: `memoir`
+  - `Support`: 日本語、英数字
+  - `Style`: オリジナルフォント
+
+- **Memoir Round**
+
+  - `Prefix`: `memoir_round`
+  - `Support`: 日本語、英数字
+  - `Style`: オリジナル丸フォント
+
+- **IPAフォント明朝体**
+
+  - `Prefix`: `mincho` `ipa_mincho`
+  - `Support`: 日本語、英数字
+  - `Style`: 明朝体
+
+- **Jua**
+
+  - `Prefix`: `jua` `kr_jua`
+  - `Support`: 韓国語（ハングル）、英数字
+  - `Style`: ゴシック体
+
+- **ドットゴシック16**
+
+  - `Prefix`: `dot` `dot_gothic_16`
+  - `Support`: 日本語、英数字
+  - `Style`: ドット（ピクセル）フォント
+
+- **解星 Decol**
+
+  - `Prefix`: `kaisei_decol`
+  - `Support`: 日本語、英数字
+  - `Style`: 装飾的な明朝体、太字
+
+- **Rampart One**
+
+  - `Prefix`: `rampart` `rampart_one`
+  - `Support`: 日本語、英数字
+  - `Style`: ポップ体
+
+- **遊明朝**
+
+  - `Prefix`: `yuji_boku`
+  - `Support`: 日本語、英数字
+  - `Style`: 毛筆風明朝体
+
+- **Cherry Bomb One**
+
+  - `Prefix`: `cherry_bomb` `cherry_bomb_one`
+  - `Support`: 日本語、英数字
+  - `Style`: ポップ体
+
+- **はちまるポップ**
+
+  - `Prefix`: `hachi_maru` `hachi_maru_pop`
+  - `Support`: 日本語、英数字
+  - `Style`: 手書き風ポップ体
+
+- **ライトノベルポップ**
+  - `Prefix`: `light_novel` `light_novel_pop`
+  - `Support`: 日本語、英数字
+  - `Style`: ライトノベル風ポップ体
+
+</details>
+
 - `size` (optional): Specifies the font size in pixels. (default: `100`, range: `1~500`)
 - `color` (optional): Specifies the text color in **hexadecimal format without #** (e.g., 444444 for dark gray). **If `#` is included, a random color will be used instead.** (default: `random`)
 

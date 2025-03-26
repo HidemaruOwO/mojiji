@@ -44,10 +44,26 @@ pub fn process(
 
     // フォントを読み込む
     let font_data: &[u8] = match font {
-        "noto" => include_bytes!("../../fonts/NotoSansJP-Bold.ttf"),
-        "rounded_mplus" => include_bytes!("../../fonts/rounded-mplus-1m-bold.ttf"),
+        "noto" | "noto_sans" => include_bytes!("../../fonts/NotoSansJP-Bold.ttf"),
+        "mplus" | "rounded_mplus" => include_bytes!("../../fonts/rounded-mplus-1m-bold.ttf"),
+        "memoir" => include_bytes!("../../fonts/memoir.otf"),
+        "memoir_round" => include_bytes!("../../fonts/memoir-round.otf"),
+        "mincho" | "ipa_mincho" => include_bytes!("../../fonts/ipamjm.ttf"),
+        "jua" | "kr_jua" => include_bytes!("../../fonts/Jua-Regular.ttf"),
+        "dot" | "dot_gothic_16" => include_bytes!("../../fonts/DotGothic16-Regular.ttf"),
+        "kaisei_decol" => include_bytes!("../../fonts/KaiseiDecol-Bold.ttf"),
+        "rampart" | "rampart_one" => include_bytes!("../../fonts/RampartOne-Regular.ttf"),
+        "yuji_boku" => include_bytes!("../../fonts/YujiBoku-Regular.ttf"),
+        "cherry_bomb" | "cherry_bomb_one" => {
+            include_bytes!("../../fonts/CherryBombOne-Regular.ttf")
+        }
+        "hachi_maru" | "hachi_maru_pop" => include_bytes!("../../fonts/HachiMaruPop-Regular.ttf"),
+        "light_novel" | "light_novel_pop" => include_bytes!("../../fonts/LightNovelPOPv2.otf"),
         _ => return Err("Unsupported font."),
     };
+
+    // フォントを読み込む。同じinclude_bytesを含むものはその分だけサイズが大きくなってしまうので、それだけ変数に入れて再実装する
+
     let font_raw = match Font::try_from_bytes(font_data) {
         Some(v) => v,
         None => return Err("Failed to load fonts."),
