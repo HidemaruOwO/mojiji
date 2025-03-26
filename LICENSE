@@ -2,6 +2,8 @@ Copyright (c) 2025 HidemaruOwO <owner@v-sli.me>
 
 This project is dual-licensed under the Apache License 2.0 and the SUSHI-WARE License.
 
+All code except fonts in the `fonts` directory is licensed under both SUSHI-WARE and Apache 2.0 License.
+
 You may choose to use the project under either license.
 
 - Apache License 2.0: See licenses/APACHE-2.0.txt
