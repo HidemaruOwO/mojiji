@@ -16,12 +16,12 @@ struct AppConfig {
 #[response(content_type = "image/png")]
 struct Image(Vec<u8>);
 
-#[get("/")]
-fn index() -> &'static str {
+#[get("/alive")]
+fn alive() -> &'static str {
     "mojiji is running now."
 }
 
-#[get("/generate?<text>&<font>&<size>&<color>")]
+#[get("/?<text>&<font>&<size>&<color>")]
 async fn generate(
     text: &str,
     color: Option<&str>,
@@ -61,5 +61,5 @@ fn rocket() -> _ {
             default_font: "rounded_mplus",
             default_size: 100.0,
         })
-        .mount("/", routes![index, generate])
+        .mount("/", routes![alive, generate])
 }
