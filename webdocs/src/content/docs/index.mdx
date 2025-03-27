@@ -1,36 +1,38 @@
 ---
-title: Welcome to Starlight
-description: Get started building your docs site with Starlight.
+title: Welcome to mojiji
+description: A cute way to turn text into an image that looks like an emoji 🎨
 template: splash
 hero:
   tagline: Congrats on setting up a new Starlight project!
   image:
-    file: ../../assets/houston.webp
+    file: ../../assets/mojiji.webp
   actions:
-    - text: Example Guide
-      link: /guides/example/
+    - text: Quick Start
+      link: /guides/usage/
       icon: right-arrow
-    - text: Read the Starlight docs
-      link: https://starlight.astro.build
+    - text: View on GitHub
+      link: https://github.com/HidemaruOwO/mojiji
       icon: external
       variant: minimal
 ---
 
-import { Card, CardGrid } from '@astrojs/starlight/components';
+import { Card, CardGrid } from "@astrojs/starlight/components";
 
 ## Next steps
 
 <CardGrid stagger>
-	<Card title="Update content" icon="pencil">
-		Edit `src/content/docs/index.mdx` to see this page change.
-	</Card>
-	<Card title="Add new content" icon="add-document">
-		Add Markdown or MDX files to `src/content/docs` to create new pages.
-	</Card>
-	<Card title="Configure your site" icon="setting">
-		Edit your `sidebar` and other config in `astro.config.mjs`.
-	</Card>
-	<Card title="Read the docs" icon="open-book">
-		Learn more in [the Starlight Docs](https://starlight.astro.build/).
-	</Card>
+  <Card title="Generate Text Images" icon="pencil">
+    Explore different fonts and styles to create unique text images using the
+    Mojiji API.
+  </Card>
+  <Card title="Try Multiple Fonts" icon="add-document">
+    Experiment with many different font styles from Gothic to Pop and
+    Handwritten themes.
+  </Card>
+  <Card title="Customize Your Images" icon="setting">
+    Adjust font size, color, and style to match your creative vision.
+  </Card>
+  <Card title="Read the Documentation" icon="open-book">
+    Learn more about all Mojiji API features and parameters.
+  </Card>
 </CardGrid>
