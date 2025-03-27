@@ -1,4 +1,5 @@
-use rocket::State;
+use comrak::{markdown_to_html, Options};
+use rocket::{response::content, State};
 use text_image::{image::dynamic_image_to_vec, process::process};
 
 mod colors;
@@ -19,6 +20,12 @@ struct Image(Vec<u8>);
 #[get("/alive")]
 fn alive() -> &'static str {
     "mojiji is running now."
+}
+
+#[get("/")]
+fn index() -> content::RawHtml<String> {
+    let readme = include_str!("../README.md");
+    content::RawHtml(markdown_to_html(readme, &Options::default()))
 }
 
 #[get("/?<text>&<font>&<size>&<color>")]
@@ -61,5 +68,5 @@ fn rocket() -> _ {
             default_font: "rounded_mplus",
             default_size: 100.0,
         })
-        .mount("/", routes![alive, generate])
+        .mount("/", routes![index, alive, generate])
 }
