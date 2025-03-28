@@ -1,4 +1,4 @@
-use comrak::{markdown_to_html, Options};
+use comraK::{markdown_to_html, Options};
 use rocket::{response::content, State};
 use text_image::{image::dynamic_image_to_vec, process::process};
 

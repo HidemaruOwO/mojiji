@@ -99,6 +99,9 @@ pub fn process(
 
         let x_position = (width - line_width) / 2;
 
+        // TODO draw_text_mutをdraw_textに変更して、二つのimage bufferを合成させて画像を完成させるような実装にする
+        // TODO 一つのimage bufferはoptinosのstretchがtrueだった場合にはline_widthに従って引き延ばす
+
         draw_text_mut(
             &mut image_buffer,
             color,
