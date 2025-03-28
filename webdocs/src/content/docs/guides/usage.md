@@ -33,6 +33,8 @@ curl "https://mojiji.v-sli.me?text=HelloWorld&font=cherry_bomb&size=200"
 
 ### Specific Color
 
+[Discover on browser](https://mojiji.v-sli.me?text=HelloWorld&color=FF5733)
+
 ```bash
 # light red color
 curl "https://mojiji.v-sli.me?text=HelloWorld&color=FF5733"

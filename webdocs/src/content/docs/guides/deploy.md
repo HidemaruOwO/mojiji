@@ -95,7 +95,7 @@ sudo systemctl status mojiji.service
 
 #### Understanding the Docker Image
 
-- **Image Source**: `ghcr.io/hidemaruowo/puyodeliver:latest`
+- **Image Source**: `ghcr.io/hidemaruowo/mojiji:latest`
 - **Maintained by**: HidemaruOwO
 - **Container Registry**: GitHub Container Registry (GHCR)
 
@@ -105,7 +105,7 @@ sudo systemctl status mojiji.service
 docker run -d \
   --name mojiji \
   -p 8000:8000 \
-  ghcr.io/hidemaruowo/puyodeliver:latest
+  ghcr.io/hidemaruowo/mojiji:latest
 ```
 
 #### Running with Docker Compose
@@ -120,7 +120,7 @@ Paste the following content:
 version: "3"
 services:
   mojiji:
-    image: ghcr.io/hidemaruowo/puyodeliver:latest
+    image: ghcr.io/hidemaruowo/mojiji:latest
     ports:
       - "8000:8000"
     restart: always
